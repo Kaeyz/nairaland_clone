@@ -47,7 +47,7 @@ let Post = mongoose.model('Post', postSchema)
     console.log('i was deleted')
 })
  */
-const port = 9000;
+const port = process.env.PORT;
 
 app.set('view engine', 'ejs')
 
@@ -72,17 +72,26 @@ app.get('/', (req, res) => {
 
 
 // Route to create Post
-app.get('/create', (req, res) => {
-    res.render('create')
+app.get('/posts', (req, res) => {
+    Post.find({}, function (err, posts) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log({
+                posts
+            });
+            res.render('home', {
+                posts
+            })
+        }
+    })
 })
 
-app.post('/create', (req, res) => {
-    // let title = req.body.postTitle
-    // let post = req.body.postBody
-    // let newData = {
-    //     title: title,
-    //     post: post
-    // }
+app.get('/posts/new', (req, res) => {
+    res.render('create')
+});
+
+app.post('/posts', (req, res) => {
     let {
         title,
         post
@@ -107,27 +116,26 @@ app.get('/find', (req, res) => {
     res.render('find')
 })
 
-app.post('/find', (req, res) => {
-    let title = req.body.title
-    Post.findOne({
-        title: title
-    }, function (err, post) {
+app.get('/posts/:id', (req, res) => {
+    let id = req.params.id
+    console.log
+    Post.findById({
+        _id: id
+    }, function (err, foundPost) {
         if (err) {
             console.log(err);
         } else {
             console.log({
-                post
+                foundPost
             });
-            res.render('show.ejs', {
-                post: post
-            })
+            res.render('show', { post: foundPost })
         }
     })
 })
 
 // Route for Update posts
 app.get('/update', (req, res) => {
-    res.render('update')
+    res.send('working')('update')
 })
 
 app.post('/update', (req, res) => {

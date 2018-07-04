@@ -15,8 +15,8 @@
         <h1>Welcome to Nairaland Clone</h1>
         <nav>
             <ul>
-                <li><a href="/create">Create Post</a></li>
-                <li><a href="/find">Find Post</a></li>
+                <li><a href="/posts/new">Create Post</a></li>
+                <li><a href="/posts/:id">Show Post</a></li>
                 <li><a href="/delete">Delete Post</a></li>
                 <li><a href="/update">Update Post</a></li>                                
             </ul>
@@ -27,7 +27,7 @@
 
         <% posts.forEach(post =>{ %>
             <li>
-            <h2><%= post.title %></h2>    
+            <h2> <a href="/posts/<%= post.id %>"><%= post.title %></a> </h2>    
             <p><%= post.post %></p>
             </li><br>
             <% }) %>
