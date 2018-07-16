@@ -1,0 +1,38 @@
+body{
+	background-color: aquamarine
+}
+#top_header{
+	background: linear-gradient(65deg, red, black);
+	border: 5px solid white;
+	padding: 50px;
+	margin:0px;
+	display:block;
+}
+#titlemenu{
+	/* float:left; */
+}
+
+main{
+	text-align: center;
+}
+
+#top_menu{
+	/* float: right; */
+	border:2px solid white;
+	padding:10px;
+	background: white;
+}
+
+li{
+	list-style: none;
+}
+a{
+	text-decoration:none;
+}
+#top_menu li{
+	text-decoration-style: none;
+	display:inline-block;
+	list-style:none;
+	padding:5px;
+	font:bold 10px tahoma;
+}

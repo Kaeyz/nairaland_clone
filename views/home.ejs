@@ -1,37 +1,23 @@
-<!DOCTYPE html>
-<html>
+<% include partials/header.ejs %>
+    <main align= "center">
+        <h2>Latest Posts</h2>
+        <div class="card">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Nairaland Clone</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
+            <% posts.forEach(post =>{ %>
+                <div class="card-body">
+                    <li>
+                        <h2 class="card-title">
+                            <a href="/posts/<%= post.id %>">
+                                <%= post.title %>
+                            </a>
+                        </h2>
+                        <!-- <p class="card-text">
+                            <%= post.post %>
+                        </p> -->
+                    </li>
+                </div>
+                <% }) %>
+        </div>
+    </main>
 
-<body>
-    <header>
-        <h1>Welcome to Nairaland Clone</h1>
-        <nav>
-            <ul>
-                <li><a href="/posts/new">Create Post</a></li>
-                <li><a href="/posts/:id">Show Post</a></li>
-                <li><a href="/delete">Delete Post</a></li>
-                <li><a href="/update">Update Post</a></li>                                
-            </ul>
-        </nav>
-    </header>
-<main>
-    <h3>Latest Posts</h3>
-
-        <% posts.forEach(post =>{ %>
-            <li>
-            <h2> <a href="/posts/<%= post.id %>"><%= post.title %></a> </h2>    
-            <p><%= post.post %></p>
-            </li><br>
-            <% }) %>
-</main>
-</body>
-
-</html>
+    <% include partials/footer.ejs  %>

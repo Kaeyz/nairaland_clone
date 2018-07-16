@@ -1,9 +1,16 @@
-<h2>New Post</h2>
-<form action="/update" method="post">
-<p>Post Title:</p> 
-<input type= "text" name="title" placeholder="Enter the post title">
-<p>New Post Body:</p>
-<input type= "text" name="post" placeholder="Enter post body"> <br/>
+<% include partials/header.ejs %>
 
-<button>Update Post</button>
-</form>
+    <h2>Update Post</h2>
+
+    <form action="/update/<%= post.id %>?_method=PUT" method="POST">
+        <p>Post Title:</p>
+        <input type="text" name="post[title]" value="<%= post.title %>">
+        <p>New Post Body:</p>
+        <textarea type="text" name="post[post]" rows="10" cols="50">
+            <%= post.post %>
+        </textarea>
+        <br>
+        <button>Update Post</button>
+    </form>
+
+    <% include partials/footer.ejs  %>

@@ -1,5 +1,29 @@
-<h1>Welcome to <%= post.title %> Page</h1>
+<% include partials/header.ejs %>
 
-<h2><%= post.title %></h2>
+    <h1>Welcome to
+        <%= post.title %> Page</h1>
 
-<p><%= post.post %></p> 
+    <!--<h2><%= post.title %></h2> -->
+
+    <p>
+        <%= post.post %>
+    </p>
+
+    <a href="/post/<%= post.id %>/update">Update Post</a>
+    <br>
+    <form action="/post/<%= post.id %>?_method=DELETE" method="POST">
+        <button>Delete Post</button>
+    </form>
+
+    <h3>Comments</h3>
+    <% post.comments.forEach(comment =>{ %>
+            <li>
+                    <%= comment.comment %>
+            </li>
+        <% }) %>
+    <form action="/post/<%= post.id %>/comment/new" method="POST">
+        <textarea type="text" placeholder="Enter your comment" name="comment" rows="10" cols="50"></textarea>
+        <button>Submit</button>
+        </div>
+    </form>
+    <% include partials/footer.ejs  %>
